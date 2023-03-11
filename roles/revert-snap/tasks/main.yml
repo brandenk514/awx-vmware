@@ -1,0 +1,37 @@
+---
+- name: include vars
+  include_vars: "{{ playbook_dir }}/roles/vars/main.yml"
+
+- name: Gather facts for a VM
+  community.vmware.vmware_vm_info:
+    hostname: "{{ vmware.host }}"
+    username: "{{ vmware.username }}"
+    password: "{{ vmware.password }}"
+    vm_type: vm
+    vm_name: '{{ ansible_hostname }}'
+    validate_certs: false
+  delegate_to: localhost
+  register: vm_info
+
+- name: Gather snapshot information about the virtual machine using MoID
+  community.vmware.vmware_guest_snapshot_info:
+    hostname: "{{ vmware.host }}"
+    username: "{{ vmware.username }}"
+    password: "{{ vmware.password }}"
+    datacenter: "{{ vm_info.virtual_machines[0].datacenter }}"
+    validate_certs: false
+    moid: "{{ vm_info.virtual_machines[0].moid }}"
+  delegate_to: localhost
+  register: snapshot_info
+
+- name: Revert to the pre-patch snapshot
+  community.vmware.vmware_guest_snapshot:
+    hostname: "{{ vmware.host }}"
+    username: "{{ vmware.username }}"
+    password: "{{ vmware.password }}"
+    moid: "{{ vm_info.virtual_machines[0].moid }}"
+    datacenter: "{{ vm_info.virtual_machines[0].datacenter }}"
+    validate_certs: false
+    state: revert
+    snapshot_name: "{{ snap_name }}"
+  delegate_to: localhost

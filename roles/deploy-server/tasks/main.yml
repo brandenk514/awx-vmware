@@ -1,0 +1,40 @@
+---
+- name: Create a virtual machine a vCenter
+  community.vmware.vmware_guest:
+    hostname: "{{ vmware.host }}"
+    username: "{{ vmware.username }}"
+    password: "{{ vmware.password }}"
+    cluster: "{{ cluster_name }}"
+    folder: "{{ folder_path }}"
+    name: "{{ vm_name }}"
+    datacenter: "{{ datacenter_name }}"
+    datastore: "{{ datastore_name }}"
+    state: present
+    guest_id: "{{ vm_hardware }}"
+    template: "{{ template }}"
+    disk:
+      - size_gb: "{{ disk_size }}"
+        type: thin
+        datastore: "{{ datastore_name }}"
+    hardware:
+      memory_mb: "{{ mem_size }}"
+      num_cpus: "{{ num_cpu }}"
+      scsi: paravirtual
+    networks:
+      - name: "{{ network_name }}"
+        type: "dhcp"
+        device_type: vmxnet3
+        connected: true
+    wait_for_ip_address: true
+    wait_for_ip_address_timeout: 120
+    customization:
+      hostname: "{{ vm_name }}"
+      domain: "{{ guest_domain }}"
+      dns_servers:
+        - "{{ guest_dns_server1 }}"
+        - "{{ guest_dns_server2 }}"
+      dns_suffix:
+        - "{{ guest_domain_name1 }}"
+        - "{{ guest_domain_name2 }}"
+      timezone: "America/Los_Angeles"
+  delegate_to: localhost

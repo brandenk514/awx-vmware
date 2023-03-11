@@ -1,0 +1,28 @@
+---
+- name: include vars
+  include_vars: "{{ playbook_dir }}/roles/vars/main.yml"
+
+- name: Gather facts for a VM
+  community.vmware.vmware_vm_info:
+    hostname: "{{ vmware.host }}"
+    username: "{{ vmware.username }}"
+    password: "{{ vmware.password }}"
+    vm_type: vm
+    vm_name: '{{ ansible_hostname }}'
+    validate_certs: false
+  delegate_to: localhost
+  register: vm_info
+
+- name: Create a snapshot
+  community.vmware.vmware_guest_snapshot:
+    hostname: "{{ vmware.host }}"
+    username: "{{ vmware.username }}"
+    password: "{{ vmware.password }}"
+    moid: "{{ vm_info.virtual_machines[0].moid }}"
+    datacenter: "{{ vm_info.virtual_machines[0].datacenter }}"
+    memory_dump: true
+    validate_certs: false
+    state: present
+    snapshot_name: "{{ snap_name }}"
+    description: Before Patching
+  delegate_to: localhost
