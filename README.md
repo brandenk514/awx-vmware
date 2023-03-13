@@ -1,4 +1,4 @@
-# awx-vmware
+# AWX VMware
 Using Ansible and VMware to deploy and manage VMs, snapshots, and more!
 
 ## Getting Started
@@ -18,20 +18,20 @@ Using Ansible and VMware to deploy and manage VMs, snapshots, and more!
 ### Variables
 This variables are stored in the **Variables** field in the job template. The can be stored in a **vars** yaml file as well.
 
-| Variable name | Description |
-| ----------- | ----------- |
-| cluster_name | The cluster in vCenter that this VM will be placed |
-| folder_path | The folder in vCenter that this VM will be placed |
-| vm_name | The name of the VM |
-| datacenter_name | The datacenter in vCenter where this VM will be placed |
-| datastore_name | The datastore in vCenter where this VM will be placed |
-| template | The full folder path to the template for the VM to be created from |
-| guest_domain | Domain for the VM |
-| guest_dns_server1 | DNS server |
-| guest_dns_server2 | DNS server |
-| guest_domain_name1 | DNS search domain |
-| guest_domain_name2 | DNS search domain |
-| snap_name | The name of the snapshot to be taken | 
+| Variable name | Description | Roles | 
+| ----------- | ----------- | ----------- |
+| cluster_name | The cluster in vCenter that this VM will be placed | Deploy-Server
+| folder_path | The folder in vCenter that this VM will be placed | Deploy-Server
+| vm_name | The name of the VM | Deploy-Server, Remove-Server
+| datacenter_name | The datacenter in vCenter where this VM will be placed | Deploy-Server
+| datastore_name | The datastore in vCenter where this VM will be placed | Deploy-Server
+| template | The full folder path to the template for the VM to be created from | Deploy-Server
+| guest_domain | Domain for the VM | Deploy-Server
+| guest_dns_server1 | DNS server | Deploy-Server
+| guest_dns_server2 | DNS server | Deploy-Server
+| guest_domain_name1 | DNS search domain | Deploy-Server
+| guest_domain_name2 | DNS search domain | Deploy-Server
+| snap_name | The name of the snapshot to be taken | Create-Snap, Revert-Snap, Remove-Snap 
 
 ## Get Involved
 I welcome your feedback and ideas! I do this in my spare time so responses may take a while. Thank you for your patience! 
