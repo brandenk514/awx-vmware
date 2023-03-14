@@ -6,4 +6,4 @@
       username: '{{ lookup("env", "VMWARE_USER") }}'
       password: '{{ lookup("env", "VMWARE_PASSWORD") }}'
   roles:
-    - deploy-ubuntu22
+    - deploy-server
