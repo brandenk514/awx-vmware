@@ -1,6 +1,4 @@
 ---
-- name: include vars
-  include_vars: "{{ playbook_dir }}/roles/vars/main.yml"
 
 - name: Gather facts for a VM
   community.vmware.vmware_vm_info:
