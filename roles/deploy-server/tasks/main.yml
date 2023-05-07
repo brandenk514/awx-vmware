@@ -24,6 +24,7 @@
       - name: "{{ network_name }}"
         start_connected: true
         connected: true
+    wait_for_customization: false
     # wait_for_ip_address: true
     # wait_for_ip_address_timeout: 120
     # customization:
