@@ -9,7 +9,7 @@
     name: "{{ vm_name }}"
     datacenter: "{{ datacenter_name }}"
     datastore: "{{ datastore_name }}"
-    state: poweredon
+    state: present
     guest_id: "{{ vm_hardware }}"
     template: "{{ template }}"
     disk:
@@ -22,19 +22,22 @@
       scsi: paravirtual
     networks:
       - name: "{{ network_name }}"
-        start_connected: true
+        type: "dhcp"
+        device_type: vmxnet3
         connected: true
-    wait_for_customization: false
-    # wait_for_ip_address: true
-    # wait_for_ip_address_timeout: 120
-    # customization:
-    #   hostname: "{{ vm_name }}"
-    #   domain: "{{ guest_domain }}"
-    #   dns_servers:
-    #     - "{{ guest_dns_server1 }}"
-    #     - "{{ guest_dns_server2 }}"
-    #   dns_suffix:
-    #     - "{{ guest_domain_name1 }}"
-    #     - "{{ guest_domain_name2 }}"
-      # timezone: "America/Los_Angeles"
+        start_connected: true
+    wait_for_ip_address: true
+    wait_for_ip_address_timeout: 120
+    customization:
+      hostname: "{{ vm_name }}"
+      domain: "{{ guest_domain }}"
+      dns_servers:
+        - "{{ guest_dns_server1 }}"
+        - "{{ guest_dns_server2 }}"
+      dns_suffix:
+        - "{{ guest_domain_name1 }}"
+        - "{{ guest_domain_name2 }}"
+      timezone: "America/Los_Angeles"
   delegate_to: localhost
+
+  # Seperate NIC add-on into another task to get around open-vm-tools bug 
