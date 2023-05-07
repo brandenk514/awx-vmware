@@ -26,6 +26,7 @@
         device_type: vmxnet3
         connected: true
         start_connected: true
+        dvswitch_name: "DSwitch-LAN"
     wait_for_ip_address: true
     wait_for_ip_address_timeout: 120
     customization:
