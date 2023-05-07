@@ -9,7 +9,7 @@
     name: "{{ vm_name }}"
     datacenter: "{{ datacenter_name }}"
     datastore: "{{ datastore_name }}"
-    state: present
+    state: poweredon
     guest_id: "{{ vm_hardware }}"
     template: "{{ template }}"
     disk:
