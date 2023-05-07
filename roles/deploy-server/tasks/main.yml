@@ -22,21 +22,18 @@
       scsi: paravirtual
     networks:
       - name: "{{ network_name }}"
-        type: "dhcp"
-        device_type: vmxnet3
-        connected: true
         start_connected: true
-        dvswitch_name: "DSwitch-LAN"
+        connected: true
     wait_for_ip_address: true
     wait_for_ip_address_timeout: 120
-    customization:
-      hostname: "{{ vm_name }}"
-      domain: "{{ guest_domain }}"
-      dns_servers:
-        - "{{ guest_dns_server1 }}"
-        - "{{ guest_dns_server2 }}"
-      dns_suffix:
-        - "{{ guest_domain_name1 }}"
-        - "{{ guest_domain_name2 }}"
-      timezone: "America/Los_Angeles"
+    # customization:
+    #   hostname: "{{ vm_name }}"
+    #   domain: "{{ guest_domain }}"
+    #   dns_servers:
+    #     - "{{ guest_dns_server1 }}"
+    #     - "{{ guest_dns_server2 }}"
+    #   dns_suffix:
+    #     - "{{ guest_domain_name1 }}"
+    #     - "{{ guest_domain_name2 }}"
+      # timezone: "America/Los_Angeles"
   delegate_to: localhost
