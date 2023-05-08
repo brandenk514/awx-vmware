@@ -51,14 +51,14 @@
 
 - name: Show VM MAC
   debug:
-    msg: "{{ deploy_vm[0].hw_eth0.mac_address }}"
+    msg: "{{ deploy_vm.instance.hw_eth0.mac_address }}"
 
 - name: Remove old NIC
   community.vmware.vmware_guest_network:
     hostname: "{{ vmware.host }}"
     username: "{{ vmware.username }}"
     password: "{{ vmware.password }}"
-    mac_address: "{{ deploy_vm[0].hw_eth0.mac_address }}"
+    mac_address: "{{ deploy_vm.instance.hw_eth0.mac_address }}"
     state: present
     start_connected: true
     connected: true
