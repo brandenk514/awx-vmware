@@ -47,7 +47,7 @@
 
 - name: Show VM UUID instance
   debug:
-    msg: "{{ deploy_vm.instance }}"
+    msg: "{{ deploy_vm.instance.moid }}"
 
 # - name: Attach NIC to VM
 #   community.vmware.vmware_guest_network:
