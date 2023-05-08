@@ -58,6 +58,7 @@
     hostname: "{{ vmware.host }}"
     username: "{{ vmware.username }}"
     password: "{{ vmware.password }}"
+    moid: "{{ deploy_vm.instance.moid }}"
     mac_address: "{{ deploy_vm.instance.hw_eth0.macaddress }}"
     state: present
     start_connected: true
