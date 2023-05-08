@@ -59,6 +59,8 @@
     username: "{{ vmware.username }}"
     password: "{{ vmware.password }}"
     mac_address: "{{ deploy_vm[0].hw_eth0.mac_address }}"
-    state: absent
+    state: present
+    start_connected: true
+    connected: true
 
   # Seperate NIC add-on into another task to get around open-vm-tools bug 
