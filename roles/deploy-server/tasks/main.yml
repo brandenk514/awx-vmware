@@ -45,15 +45,20 @@
   debug:
     msg: "{{ deploy_vm }}"
 
-- name: Show VM UUID instance
+- name: Show VM MOID
   debug:
     msg: "{{ deploy_vm.instance.moid }}"
 
-# - name: Attach NIC to VM
-#   community.vmware.vmware_guest_network:
-#     hostname: "{{ vmware.host }}"
-#     username: "{{ vmware.username }}"
-#     password: "{{ vmware.password }}"
-#     uuid: "{{ deploy_vm[0].moid }}"
+- name: Show VM MAC
+  debug:
+    msg: "{{ deploy_vm[0].hw_eth0.mac_address }}"
+
+- name: Remove old NIC
+  community.vmware.vmware_guest_network:
+    hostname: "{{ vmware.host }}"
+    username: "{{ vmware.username }}"
+    password: "{{ vmware.password }}"
+    mac_address: "{{ deploy_vm[0].hw_eth0.mac_address }}"
+    state: absent
 
   # Seperate NIC add-on into another task to get around open-vm-tools bug 
