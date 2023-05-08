@@ -47,13 +47,13 @@
 
 - name: Show VM UUID instance
   debug:
-    msg: "{{ deploy_vm[instance_uuid]}}"
+    msg: "{{ deploy_vm['instance_uuid'] }}"
 
 - name: Attach NIC to VM
   community.vmware.vmware_guest_network:
     hostname: "{{ vmware.host }}"
     username: "{{ vmware.username }}"
     password: "{{ vmware.password }}"
-    uuid: "{{ deploy_vm[instance_uuid]}}"
+    uuid: "{{ deploy_vm['instance_uuid'] }}"
 
   # Seperate NIC add-on into another task to get around open-vm-tools bug 
