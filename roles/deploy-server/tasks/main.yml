@@ -41,8 +41,8 @@
   delegate_to: localhost
   register: deploy_vm
 
-# - name: Show VM instance
-#   debug:
-#     msg: deploy_vm
+- name: Show VM instance
+  debug:
+    msg: deploy_vm
 
   # Seperate NIC add-on into another task to get around open-vm-tools bug 
