@@ -39,10 +39,10 @@
         - "{{ guest_domain_name2 }}"
       timezone: "America/Los_Angeles"
   delegate_to: localhost
-  register: deployed-vm
+  register: deploy_vm
 
-- name: Show VM
-  debug:
-    msg: deployed-vm
+# - name: Show VM instance
+#   debug:
+#     msg: deploy_vm
 
   # Seperate NIC add-on into another task to get around open-vm-tools bug 
