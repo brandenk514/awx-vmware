@@ -20,5 +20,5 @@
     datacenter: "{{ vm_info.virtual_machines[0].datacenter }}"
     validate_certs: false
     state: absent
-    snapshot_name: ${snap_name}
+    snapshot_name: "{{ snap_name }}"
   delegate_to: localhost
