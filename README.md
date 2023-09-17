@@ -1,7 +1,13 @@
 # AWX VMware
-Using Ansible and VMware to deploy and manage VMs, snapshots, and more!
 
-## Getting Started
+This repository contains Ansible roles for configuring servers for provisioning and deployment via AWX.
+
+## Prerequisites
+
+- Ansible
+- AWX
+
+## Installation
 
 ### In AWX
 1. Create source control, make sure to use their respective credential types too
@@ -14,6 +20,8 @@ Using Ansible and VMware to deploy and manage VMs, snapshots, and more!
 ### vCenter
 1. Create a service account for the connection from vCenter to Ansible. You can use the *administrator@vsphere.local* for testing, but this should **not** be used in production environments
 2. Create a set of VMware credentials inside VMware. Credentials -> Add -> Credential type -> VMware
+
+## Usage
 
 ### Variables
 This variables are stored in the **Variables** field in the job template. The can be stored in a **vars** yaml file as well.
@@ -33,5 +41,16 @@ This variables are stored in the **Variables** field in the job template. The ca
 | guest_domain_name2 | DNS search domain | Deploy-Server
 | snap_name | The name of the snapshot to be taken | Create-Snap, Revert-Snap, Remove-Snap 
 
-## Get Involved
-I welcome your feedback and ideas! I do this in my spare time so responses may take a while. Thank you for your patience! 
+## Contributing
+
+Contributions are welcome! Please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch.
+3. Make your changes.
+4. Test your changes.
+5. Submit a pull request.
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
